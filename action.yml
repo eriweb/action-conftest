@@ -4,15 +4,8 @@ description: Check and validate metagraf.json with conftest
 runs:
   using: composite
   steps:
-    - uses: terbolous/action-setup-conftest@main
-    - run: pwd && ls
-      shell: bash
-    - name: echo action_path
-      run: echo "${{ github.action_path }}"
-      shell: bash
-    - name: ls action_path
-      run: ls "${{ github.action_path }}"
-      shell: bash
+    - name: setup conftest
+      uses: terbolous/action-setup-conftest@main
     - name: run conftest
       shell: bash
       run: conftest test -p "${{ github.action_path }}/policy/ini.rego" config.ini
